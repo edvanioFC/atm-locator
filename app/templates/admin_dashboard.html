@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 style="color: var(--primary);">Painel Administrativo</h1>
+    
+    <div class="stats-grid">
+        <div class="atm-card"><h3>Total ATMs: {{ atms_count }}</h3></div>
+        <div class="atm-card"><h3>Usuários: {{ users_count }}</h3></div>
+    </div>
+
+    <div class="atm-card">
+        <h3>Inserir Novo ATM</h3>
+        <form action="{{ url_for('admin.add_atm') }}" method="POST" class="admin-form">
+            <input type="text" name="bank_name" placeholder="Nome do Banco" required>
+            <input type="text" name="address" placeholder="Endereço">
+            <input type="number" step="any" name="latitude" placeholder="Latitude" required>
+            <input type="number" step="any" name="longitude" placeholder="Longitude" required>
+            <button type="submit">Gravar ATM</button>
+        </form>
+    </div>
+
+    <h3>Lista de ATMs Geridos</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Banco</th><th>Latitude</th><th>Longitude</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for atm in atms %}
+            <tr>
+                <td>{{ atm.bank_name }}</td>
+                <td>{{ atm.latitude }}</td>
+                <td>{{ atm.longitude }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

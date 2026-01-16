@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="user-header">
+        <div class="avatar-circle">
+            {{ user.username[0] | upper }}
+        </div>
+        <div>
+            <h1 style="margin: 0;">{{ user.username }}</h1>
+            <p style="color: #8b949e; margin: 5px 0 0 0;">{{ user.email }}</p>
+        </div>
+    </div>
+
+    <div class="settings-grid">
+        <div class="atm-card">
+            <h3>Informações da Conta</h3>
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <button class="btn-primary" style="width: 100%; margin-top: 10px;">Editar Perfil</button>
+        </div>
+
+        <div class="atm-card">
+            <h3>Segurança</h3>
+            <p>Alterar a palavra-passe da sua conta para manter o acesso seguro.</p>
+            <button class="btn-outline" style="width: 100%; margin-top: 10px;">Mudar Senha</button>
+        </div>
+
+        <div class="atm-card danger-zone">
+            <h3 style="color: var(--danger);">Eliminar Conta</h3>
+            <p>Esta ação apagará todos os seus dados e favoritos.</p>
+            <button class="btn-danger">Eliminar Permanentemente</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/user_dashboard.js') }}"></script>
+{% endblock %}
