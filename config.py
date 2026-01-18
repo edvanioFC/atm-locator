@@ -24,6 +24,15 @@ class Config:
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB max
     UPLOAD_FOLDER = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'app/static/uploads')
 
+    # Configurações de Email para Recuperação de Senha
+    MAIL_SERVER = os.getenv('MAIL_SERVER', 'smtp.example.com')
+    MAIL_PORT = int(os.getenv('MAIL_PORT', 587))
+    MAIL_USE_TLS = os.getenv('MAIL_USE_TLS', 'true').lower() in ['true', 'on', '1']
+    MAIL_USERNAME = os.getenv('MAIL_USERNAME', 'your-email@example.com')
+    MAIL_PASSWORD = os.getenv('MAIL_PASSWORD', 'your-email-password')
+    MAIL_DEFAULT_SENDER = os.getenv('MAIL_DEFAULT_SENDER', 'noreply@example.com')
+
+
 class DevelopmentConfig(Config):
     """Configurações para Desenvolvimento Local."""
     DEBUG = True

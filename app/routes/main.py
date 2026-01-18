@@ -23,8 +23,7 @@ def get_atms():
         SELECT *, (6371 * acos(cos(radians(:lat)) * cos(radians(latitude)) * cos(radians(longitude) - radians(:lon)) + sin(radians(:lat)) * sin(radians(latitude)))) AS distance 
         FROM atm 
         WHERE bank_name ILIKE :search
-        ORDER BY distance ASC 
-        LIMIT 10
+        ORDER BY distance ASC
     """)
     
     results = db.session.execute(sql, {'lat': lat, 'lon': lon, 'search': f'%{search}%'})
@@ -34,6 +33,7 @@ def get_atms():
         atms.append({
             "id": row.id,
             "bank_name": row.bank_name,
+            "address": row.address,
             "distance": round(row.distance, 2),
             "lat": row.latitude,
             "lon": row.longitude

@@ -1,19 +1,29 @@
 {% extends "base.html" %}
 
-{% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
-{% endblock %}
+{% block title %}Login - {{ super() }}{% endblock %}
 
 {% block content %}
-<div class="auth-card">
-    <h2>Login</h2>
-    <form method="POST" class="auth-form">
-        <input type="text" name="username" placeholder="Usuário" required>
-        <input type="password" name="password" placeholder="Senha" required>
-        <button type="submit">Aceder</button>
-    </form>
-    <div class="auth-footer">
-        <p>Não tem conta? <a href="{{ url_for('auth.register') }}">Criar conta nova</a></p>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h2 class="card-title text-center mb-4">Login</h2>
+                <form method="POST" novalidate>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Senha" required>
+                        <label for="password">Senha</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 btn-lg">Aceder</button>
+                </form>
+            </div>
+            <div class="card-footer text-center py-3">
+                <p class="mb-0">Não tem conta? <a href="{{ url_for('auth.register') }}">Criar conta nova</a></p>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

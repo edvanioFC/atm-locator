@@ -21,11 +21,13 @@ def dashboard():
     atms_count = ATM.query.count()
     users_count = User.query.count()
     atms = ATM.query.all()
+    users = User.query.all()  # Fetch all users
     return render_template(
                 'admin_dashboard.html', 
                 atms=atms, 
                 atms_count=atms_count, 
-                users_count=users_count
+                users_count=users_count,
+                users=users # Pass users to the template
             )
 
 @admin_bp.route('/atm/add', methods=['POST'])
@@ -67,4 +69,29 @@ def add_atm():
         db.session.rollback()
         flash(f'Erro interno: {str(e)}', 'danger')
     
+    return redirect(url_for('admin.dashboard'))
+
+@admin_bp.route('/atm/delete/<int:atm_id>')
+def delete_atm(atm_id):
+    try:
+        atm_to_delete = ATM.query.get_or_404(atm_id)
+        db.session.delete(atm_to_delete)
+        db.session.commit()
+        flash('ATM apagado com sucesso!', 'success')
+    except Exception as e:
+        db.session.rollback()
+        flash(f'Erro ao apagar o ATM: {str(e)}', 'danger')
+    return redirect(url_for('admin.dashboard'))
+
+@admin_bp.route('/user/delete/<int:user_id>')
+def delete_user(user_id):
+    try:
+        user_to_delete = User.query.get_or_404(user_id)
+        db.session.delete(user_to_delete)
+        db.session.commit()
+        flash('Usuário apagado com sucesso!', 'success')
+    except Exception as e:
+        db.session.rollback()
+        flash(f'Erro ao apagar o usuário: {str(e)}', 'danger')
+        
     return redirect(url_for('admin.dashboard'))

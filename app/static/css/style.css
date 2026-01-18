@@ -84,3 +84,13 @@ button:hover {
     max-width: 600px;
     text-align: center;
 }
+
+.route-button {
+    background-color: var(--primary);
+    color: var(--bg);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 5px;
+}

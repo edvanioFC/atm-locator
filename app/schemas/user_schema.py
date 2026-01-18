@@ -20,7 +20,7 @@ class UserCreate(BaseModel):
 
 class UserLogin(BaseModel):
     username: str
-    password: str # No login não precisamos validar tamanho, apenas receber
+    password: str
 
 class UserUpdate(BaseModel):
     email: Optional[EmailStr] = None

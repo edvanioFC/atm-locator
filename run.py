@@ -44,4 +44,17 @@ def boot_app():
 
 if __name__ == "__main__":
     boot_app()
-    app.run(host=HOST, port=PORT)
+    
+    # Verifica a existência de certificados SSL para rodar em HTTPS
+    ssl_context = None
+    cert_path = 'cert.pem'
+    key_path = 'key.pem'
+
+    if os.path.exists(cert_path) and os.path.exists(key_path):
+        ssl_context = (cert_path, key_path)
+        print(f"Certificados SSL encontrados. A aceder em: https://{HOST}:{PORT}")
+    else:
+        print(f"Certificados SSL não encontrados. A aceder em: http://{HOST}:{PORT}")
+        print("Atenção: A geolocalização pode não funcionar em HTTP. Gere certificados SSL para habilitar HTTPS.")
+
+    app.run(host=HOST, port=PORT, ssl_context=ssl_context)
