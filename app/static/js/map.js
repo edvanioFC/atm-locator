@@ -158,6 +158,18 @@ function startRouting(lat, lon) {
             return L.marker(waypoint.latLng);
         }
     }).addTo(map);
+
+    routingControl.on('routesfound', function(e) {
+        const routes = e.routes;
+        const summary = routes[0].summary;
+        const timeMinutes = Math.round(summary.totalTime / 60);
+        const distanceKm = (summary.totalDistance / 1000).toFixed(1);
+
+        L.popup()
+            .setLatLng([lat, lon])
+            .setContent(`<b>Tempo estimado: ${timeMinutes} min</b><br>Distância: ${distanceKm} km`)
+            .openOn(map);
+    });
 }
 
 /**

@@ -2,6 +2,7 @@ from typing import Optional
 from app import db
 
 class ATM(db.Model):
+    table_name = 'atms'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     bank_name = db.Column(db.String(100), nullable=False)
     address = db.Column(db.String(200))

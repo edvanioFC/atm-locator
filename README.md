@@ -9,6 +9,7 @@ Sistema de localização de ATMs utilizando **Flask (MVC)**, **PostgreSQL** e **
 - **Validação:** Pydantic v2
 - **Frontend:** Jinja2, CSS3 (Dark Theme), Leaflet.js
 - **DevOps:** Docker, Shell Script
+- OpenStreetMap
 
 ## 🚀 Como Rodar
 
@@ -18,8 +19,8 @@ Sistema de localização de ATMs utilizando **Flask (MVC)**, **PostgreSQL** e **
 docker-compose up --build
 ```
 
-
 ---
+
 ### 3. LICENSE (MIT)
 
 A licença MIT é a mais comum para projetos open-source, permitindo uso livre.
@@ -47,3 +48,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ---
+```

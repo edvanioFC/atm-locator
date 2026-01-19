@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, login_required, current_user
 from app.models import User
-from app.schemas.user_schema import UserCreate # Importando o Schema Pydantic
+from app.schemas.user_schema import UserCreate
 from app import db, mail
 from flask_mail import Message
 from pydantic import ValidationError
@@ -28,6 +28,10 @@ def register():
 
     if request.method == 'POST':
         try:
+            if request.form.get('password') != request.form.get('confirm_password'):
+                flash('As senhas não coincidem.')
+                return render_template('register.html')
+
             # 1. Validação rigorosa com Pydantic
             user_data = UserCreate(
                 username=request.form.get('username') or '',
@@ -160,5 +164,3 @@ def delete_account():
     logout_user()
     flash('Sua conta foi eliminada com sucesso.')
     return redirect(url_for('auth.login'))
-
-

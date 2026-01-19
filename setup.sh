@@ -31,6 +31,12 @@ fi
 # 4. Dar permissão ao entrypoint
 chmod +x entrypoint.sh
 
+# 5. Gerar certificado SSL autoassinado para desenvolvimento
+if [ ! -f "cert.pem" ] || [ ! -f "key.pem" ]; then
+    echo "Gerando certificado SSL autoassinado..."
+    openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365 -subj "/CN=localhost"
+fi
+
 flask db init || echo "Migrations já inicializadas."
 flask db migrate -m "Migracao inicial" || echo "Nenhuma mudança detectada."
 flask db upgrade 
