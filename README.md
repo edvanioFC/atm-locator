@@ -1,8 +1,6 @@
-# ATM Locator
+# Localizador de ATM 
 
-**ATM Locator** é uma aplicação web completa desenvolvida em Flask que permite aos utilizadores encontrar caixas multibanco (ATMs) próximas, traçar rotas e gerir informações. A aplicação inclui um sistema robusto de autenticação, um painel de administração para gestão de dados e uma interface de mapa interativa.
-
-
+**O Localizador de ATM** é uma aplicação web completa desenvolvida em Flask que permite aos utilizadores encontrar caixas multibanco (ATMs) próximas, traçar rotas e gerir informações. A aplicação inclui um sistema robusto de autenticação, um painel de administração para gestão de dados e uma interface de mapa interativa.
 
 ---
 
