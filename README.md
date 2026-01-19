@@ -4,7 +4,7 @@
 
 ---
 
-## ✨ Funcionalidades Principais
+##  Funcionalidades Principais
 
 *   **Autenticação de Utilizadores:** Registo, login, logout, e recuperação de senha por email.
 *   **Gestão de Perfil:** Os utilizadores podem editar o seu perfil e alterar a senha.
@@ -19,7 +19,7 @@
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+##  Tecnologias Utilizadas
 
 *   **Backend:** Python, Flask, Flask-SQLAlchemy, Flask-Login, Flask-Migrate, Pydantic
 *   **Base de Dados:** PostgreSQL
@@ -30,7 +30,7 @@
 
 ---
 
-## 🚀 Instalação e Configuração
+##  Instalação e Configuração
 
 Siga os passos abaixo para configurar e executar o projeto no seu ambiente local.
 
@@ -87,7 +87,7 @@ MAIL_PASSWORD=your-email-password
 
 ---
 
-## ▶️ Executar a Aplicação
+##  Executar a Aplicação
 
 Após a configuração, ative o ambiente virtual e inicie a aplicação:
 
@@ -108,7 +108,7 @@ Use estas credenciais para aceder ao painel de administração em `/admin/dashbo
 
 ---
 
-## 📂 Estrutura do Projeto
+##  Estrutura do Projeto
 
 ```
 .
