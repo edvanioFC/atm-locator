@@ -81,8 +81,11 @@
                                 <td>{{ atm.address or 'N/A' }}</td>
                                 <td>{{ atm.latitude }}</td>
                                 <td>{{ atm.longitude }}</td>
-                                <td>
-                                    <a href="{{ url_for('admin.delete_atm', atm_id=atm.id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja apagar este ATM?');">Apagar</a>
+                                <td data-bs-toggle="tooltip" data-bs-placement="top" title="Editar ou Apagar ATM">
+                                    <div class="d-flex gap-2">
+                                        <a href="{{ url_for('admin.edit_atm', atm_id=atm.id) }}" class="btn btn-sm btn-warning">Editar</a>
+                                        <a href="{{ url_for('admin.delete_atm', atm_id=atm.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja apagar este ATM?');">Apagar</a>
+                                    </div>
                                 </td>
                             </tr>
                             {% endfor %}
