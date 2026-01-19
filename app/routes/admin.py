@@ -71,6 +71,62 @@ def add_atm():
     
     return redirect(url_for('admin.dashboard'))
 
+@admin_bp.route('/atm/edit/<int:atm_id>', methods=['GET', 'POST'])
+def edit_atm(atm_id):
+    atm = ATM.query.get_or_404(atm_id)
+    if request.method == 'POST':
+        # Criar um objeto temporário com os dados do formulário para passar de volta ao template em caso de erro
+        class FormData:
+            id = atm_id
+            bank_name = request.form.get('bank_name')
+            address = request.form.get('address')
+            latitude = request.form.get('latitude')
+            longitude = request.form.get('longitude')
+            is_active = 'is_active' in request.form
+        
+        form_data_obj = FormData()
+
+        try:
+            payload = {
+                "bank_name": request.form.get('bank_name'),
+                "address": request.form.get('address'),
+                "latitude": float(request.form.get('latitude', 0)),
+                "longitude": float(request.form.get('longitude', 0)),
+                "is_active": 'is_active' in request.form
+            }
+            data = ATMCreate(**payload)
+
+            # Validar se já existe outro ATM na mesma localização
+            existing_atm = ATM.query.filter(
+                ATM.latitude == data.latitude,
+                ATM.longitude == data.longitude,
+                ATM.id != atm_id
+            ).first()
+            if existing_atm:
+                flash('Erro: Já existe um ATM nesta localização.', 'danger')
+                return render_template('edit_atm.html', atm=form_data_obj)
+
+            # Atualizar o objeto ATM
+            atm.bank_name = data.bank_name
+            atm.address = data.address
+            atm.latitude = data.latitude
+            atm.longitude = data.longitude
+            atm.is_active = data.is_active
+            
+            db.session.commit()
+            flash('ATM atualizado com sucesso!', 'success')
+            return redirect(url_for('admin.dashboard'))
+        
+        except (ValidationError, ValueError) as e:
+            flash('Erro nos dados: Verifique os campos preenchidos.', 'danger')
+            return render_template('edit_atm.html', atm=form_data_obj)
+        except Exception as e:
+            db.session.rollback()
+            flash(f'Erro interno: {str(e)}', 'danger')
+            return render_template('edit_atm.html', atm=form_data_obj)
+
+    return render_template('edit_atm.html', atm=atm)
+
 @admin_bp.route('/atm/delete/<int:atm_id>')
 def delete_atm(atm_id):
     try:
