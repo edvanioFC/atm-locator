@@ -1,7 +1,7 @@
 #!/bin/bash
 # setup.sh - Script de configuração inicial
 
-echo "🚀 Iniciando configuração do ATM Locator..."
+echo "Iniciando configuração do Localizador de ATM..."
 
 # 1. Criar ambiente virtual se não existir
 if [ ! -d ".venv" ]; then

@@ -52,7 +52,7 @@ cd atm_locator
 
 O projeto inclui um script de configuração (`setup.sh`) que automatiza a maior parte do processo.
 
-Execute o script:
+**Linux / macOS:**
 ```bash
 bash setup.sh
 ```
